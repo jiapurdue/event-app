@@ -8,7 +8,7 @@ const Home = () => {
     <div className="App">
       <header className="App-header">
         <h1>Welcome To Event Center</h1>
-        <Link to="/event">
+        <Link to="/events">
           <h3 className="App-link">View Events</h3>
         </Link>
       </header>

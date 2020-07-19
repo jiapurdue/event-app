@@ -23,7 +23,8 @@ const eventStyle = (theme) => ({
   },
 
   eventCardContainer: {
-    spacing: "1",
+    paddingTop: "1rem",
+    paddingLeft: "5rem",
   },
 });
 

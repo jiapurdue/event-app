@@ -1,16 +1,16 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Grid from "@material-ui/core/Grid";
 
 import styles from "../../assets/jss/components/eventCardStyle";
@@ -29,10 +29,12 @@ function titleCase(str) {
 // console.log(truncateStr('Accusamus Beatae Ad Facilis Cum Similique Qui Sunt', 25));
 
 const EventCard = (props) => {
+  const history = useHistory();
   const classes = useStyles();
+  const eventId = props.id;
 
-  const handleExpandClick = () => {
-    // setExpanded(!expanded);
+  const handleButtonClick = () => {
+    history.push(`/event/${eventId}`)
   };
 
   return (
@@ -50,7 +52,7 @@ const EventCard = (props) => {
         <CardMedia
           className={classes.media}
           image={props.imgUrl}
-          title={(props.title.toUpperCase())}
+          title={props.title.toUpperCase()}
         />
         {/*
       <CardContent>
@@ -59,15 +61,18 @@ const EventCard = (props) => {
           together with your guests. Add 1 cup of frozen peas along with the
           mussels, if you like.
         </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-      </CardActions> */}
+      </CardContent>*/}
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+          <Button size="small" color="primary" onClick={handleButtonClick}>
+            Details
+          </Button>
+        </CardActions>
       </Card>
     </Grid>
   );

@@ -9,6 +9,10 @@ const eventCardStype = (theme) => ({
     fontSize: 10,
   },
 
+  cardGrid: {
+    paddingTop: '1rem',
+  },
+
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9

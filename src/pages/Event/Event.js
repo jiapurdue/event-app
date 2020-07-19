@@ -12,6 +12,7 @@ import styles from "../../assets/jss/pages/eventStyle";
 
 import * as moment from "moment";
 import * as DateGenerator from "random-date-generator";
+import axios from "axios";
 
 const getRadomDate = () => {
   let startDate = new Date();
@@ -47,19 +48,20 @@ const Event = () => {
   //   const [imageItems, setImageItems] = useState([]);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/photos")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsEventLoaded(true);
-          setEventItems(result);
-          console.log(result);
-        },
-        (error) => {
-          setIsEventLoaded(true);
-          setErrorEvent(error);
-        }
-      );
+    const fetchData = async () => {
+      try {
+        const result = await axios(
+          "https://jsonplaceholder.typicode.com/photos"
+        );
+        setEventItems(result.data);
+        console.log(result.data);
+        setIsEventLoaded(true);
+      } catch (error) {
+        setIsEventLoaded(true);
+        setErrorEvent(error);
+      }
+    };
+    fetchData();
   }, []);
 
   //The Lorem Ipsum for photos.
@@ -101,8 +103,10 @@ const Event = () => {
 
             <Grid
               container
+              direction="row"
+              justify="space-evenly"
+              alignItems="baseline"
               className={classes.eventCardContainer}
-              spacing={"3"}
             >
               {eventItems.map((item, index) =>
                 index < 6 ? (
@@ -111,6 +115,7 @@ const Event = () => {
                     title={truncateStr(item.title, 35)}
                     imgUrl={item.url}
                     date={getRadomDate()}
+                    id={item.id}
                   />
                 ) : null
               )}
