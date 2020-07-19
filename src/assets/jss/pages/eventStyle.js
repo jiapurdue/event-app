@@ -21,6 +21,10 @@ const eventStyle = (theme) => ({
     paddingTop: "0.5rem",
     paddingBottom: "0.5rem",
   },
+
+  eventCardContainer: {
+    spacing: "1",
+  },
 });
 
 export default eventStyle;
