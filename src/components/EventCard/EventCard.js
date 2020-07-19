@@ -12,7 +12,6 @@ import Button from "@material-ui/core/Button";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import Grid from "@material-ui/core/Grid";
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 import styles from "../../assets/jss/components/eventCardStyle";
 

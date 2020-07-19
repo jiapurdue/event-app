@@ -7,8 +7,8 @@ const eventDetailStyle = (theme) => ({
     display: "flex",
   },
 
-  cardMedia: {
-    width: 160,
+  icon: {
+    paddingRight: "1rem",
   },
 
   containerDetails: {
@@ -19,7 +19,11 @@ const eventDetailStyle = (theme) => ({
     zIndex: "1",
   },
 
-  image: { maxWidth: "65vw", maxheight: "50wh" },
+  image: { maxWidth: "60vw", maxheight: "40wh" },
+
+  button: {
+    margin: theme.spacing(1),
+  },
 });
 
 export default eventDetailStyle;
