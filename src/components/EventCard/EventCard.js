@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import Grid from "@material-ui/core/Grid";
 
 import styles from "../../assets/jss/components/eventCardStyle";
 
@@ -25,6 +26,8 @@ function titleCase(str) {
   return splitStr.join(" ");
 }
 
+// console.log(truncateStr('Accusamus Beatae Ad Facilis Cum Similique Qui Sunt', 25));
+
 const EventCard = (props) => {
   const classes = useStyles();
 
@@ -33,22 +36,23 @@ const EventCard = (props) => {
   };
 
   return (
-    <Card className={classes.root}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            {props.title.toUpperCase()[0]}
-          </Avatar>
-        }
-        title={titleCase(props.title)}
-        subheader={props.date}
-      />
-      <CardMedia
-        className={classes.media}
-        image={props.imgUrl}
-        title={props.title.toUpperCase()}
-      />
-      {/*
+    <Grid item xs={4} className={classes.cardGrid}>
+      <Card className={classes.root}>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="category" className={classes.avatar}>
+              {props.title.toUpperCase()[0]}
+            </Avatar>
+          }
+          title={titleCase(props.title)}
+          subheader={props.date}
+        />
+        <CardMedia
+          className={classes.media}
+          image={props.imgUrl}
+          title={(props.title.toUpperCase())}
+        />
+        {/*
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           This impressive paella is a perfect party dish and a fun meal to cook
@@ -64,7 +68,8 @@ const EventCard = (props) => {
           <ShareIcon />
         </IconButton>
       </CardActions> */}
-    </Card>
+      </Card>
+    </Grid>
   );
 };
 

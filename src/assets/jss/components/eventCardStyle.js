@@ -2,7 +2,7 @@ import { red } from "@material-ui/core/colors";
 
 const eventCardStype = (theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: "28vw",
   },
 
   title: {
@@ -28,6 +28,13 @@ const eventCardStype = (theme) => ({
 
   avatar: {
     backgroundColor: red[500],
+  },
+
+  /* ----------- Non-Retina Screens ----------- */
+  "@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1)": {
+    root: {
+        maxWidth: "25vw",
+      },
   },
 });
 

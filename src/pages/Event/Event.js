@@ -20,6 +20,19 @@ const getRadomDate = () => {
     "ll"
   );
 };
+
+const truncateStr = (str, n, useWordBoundary) => {
+  if (str.length <= n) {
+    return str;
+  }
+  const subString = str.substr(0, n - 1); // the original check
+  return (
+    (useWordBoundary
+      ? subString.substr(0, subString.lastIndexOf(" "))
+      : subString) + "..."
+  );
+};
+
 const useStyles = makeStyles(styles);
 
 const Event = () => {
@@ -72,12 +85,7 @@ const Event = () => {
   } else {
     return (
       <main className={classNames(classes.root)}>
-        <Grid
-          container
-          direction="row"
-          justify="flex-end"
-          alignItems="baseline"
-        >
+        <Grid container direction="row" justify="center" alignItems="stretch">
           <Grid item md={12} className={classNames(classes.eventContainer)}>
             <Grid item md={12}>
               <Paper className={classes.eventTitlePaper}>
@@ -91,19 +99,21 @@ const Event = () => {
               </Paper>
             </Grid>
 
-            <Grid container className={classes.eventCardContainer}>
-              <ul>
-                {eventItems.map((item, index) =>
-                  index < 10 ? (
-                    <EventCard
-                      key={index}
-                      title={item.title}
-                      imgUrl={item.url}
-                      date={getRadomDate()}
-                    />
-                  ) : null
-                )}
-              </ul>
+            <Grid
+              container
+              className={classes.eventCardContainer}
+              spacing={"3"}
+            >
+              {eventItems.map((item, index) =>
+                index < 6 ? (
+                  <EventCard
+                    key={index}
+                    title={truncateStr(item.title, 35)}
+                    imgUrl={item.url}
+                    date={getRadomDate()}
+                  />
+                ) : null
+              )}
             </Grid>
           </Grid>
         </Grid>

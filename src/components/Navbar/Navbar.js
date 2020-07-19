@@ -29,7 +29,7 @@ const Navbar = () => {
             </IconButton>{" "}
           </Link>
           <Typography variant="h5" className={classes.title}>
-            My Event Application
+            EVENT GURU
           </Typography>
         </Toolbar>
       </AppBar>
