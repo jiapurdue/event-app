@@ -4,7 +4,7 @@ const navbarStyle = (theme) => ({
   },
 
   AppBar: {
-    padding: 0,
+    padding: 2,
     background: "transparent",
     boxShadow: "none",
     opacity: 0.9,

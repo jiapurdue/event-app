@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <div className={classes.root}>
       <AppBar color="default" className={classes.AppBar} position="static">
-        <Toolbar style={{ paddingRight: 0 }}>
+        <Toolbar>
           <Link to="/">
             <IconButton
               edge="start"
