@@ -21,6 +21,8 @@ import { LoremIpsum } from "lorem-ipsum";
 
 import axios from "axios";
 
+import AlertBox from "../../components/AlertBox";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 import styles from "../../assets/jss/pages/eventDetailStyle";
@@ -49,7 +51,9 @@ const EventDetail = () => {
   const [imageItem, setImageItem] = useState([]);
   const [open, setOpen] = useState(false);
   const [eventDetail, setEventDetail] = useState(sentences);
-
+  const [emailInput, setEmailInput] = useState("");
+  const [emailSubmit, setEmailSubmit] = useState(false);
+  const [isAlert, setIsAlert] = useState(false);
   //The Lorem Ipsum for photos.
   useEffect(() => {
     const fetchData = async () => {
@@ -74,6 +78,22 @@ const EventDetail = () => {
     setOpen(false);
   };
 
+  const handleAlertClose = () => {
+    setIsAlert(false);
+  }
+
+  const handleEmailInput = (e) => {
+    setEmailInput(e.target.value);
+    console.log(emailInput);
+  };
+
+  const handleEmailSubmit = (e) => {
+    e.preventDefault();
+    setEmailSubmit(true);
+    setOpen(false);
+    setIsAlert(true);
+  };
+
   if (errorImage) {
     return <div>Error: {errorImage.message}</div>;
   } else if (!isImageLoaded) {
@@ -81,6 +101,8 @@ const EventDetail = () => {
   } else {
     return (
       <main className={classNames(classes.root)}>
+        {isAlert ? <AlertBox handleAlertClose={handleAlertClose}/> : null}
+
         <Grid container spacing={3} className={classes.containerDetails}>
           <Grid item xs={1} md={2}></Grid>
 
@@ -115,7 +137,9 @@ const EventDetail = () => {
                 </div>
               </Typography>
 
-              <Typography variant="subtitle1">Event details:{eventDetail}</Typography>
+              <Typography variant="subtitle1">
+                Event details:{eventDetail}
+              </Typography>
 
               <Button
                 variant="contained"
@@ -159,13 +183,14 @@ const EventDetail = () => {
               type="email"
               fullWidth
               required
+              onChange={handleEmailInput}
             />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={handleEmailSubmit} color="primary">
               Register
             </Button>
           </DialogActions>
