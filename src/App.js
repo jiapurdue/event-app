@@ -22,7 +22,7 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/events" component={Event} />
-        <Route exact path="/event/:id"> <EventDetail /></Route>
+        <Route exact path="/event/:id/:title/:date"> <EventDetail /></Route>
       </Switch>
     </Router>
   </ThemeProvider>

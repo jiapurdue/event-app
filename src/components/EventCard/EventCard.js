@@ -12,29 +12,33 @@ import Button from "@material-ui/core/Button";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import Grid from "@material-ui/core/Grid";
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 import styles from "../../assets/jss/components/eventCardStyle";
 
 const useStyles = makeStyles(styles);
 
-function titleCase(str) {
+const titleCase = (str) => {
   let splitStr = str.toLowerCase().split(" ");
   for (let i = 0; i < splitStr.length; i++) {
     splitStr[i] =
       splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
   }
   return splitStr.join(" ");
-}
+};
 
 // console.log(truncateStr('Accusamus Beatae Ad Facilis Cum Similique Qui Sunt', 25));
 
 const EventCard = (props) => {
   const history = useHistory();
   const classes = useStyles();
+
   const eventId = props.id;
+  const eventTitle = titleCase(props.fullTitle);
+  const eventDate = props.date;
 
   const handleButtonClick = () => {
-    history.push(`/event/${eventId}`)
+    history.push(`/event/${eventId}/${eventTitle}/${eventDate}`);
   };
 
   return (
@@ -49,19 +53,13 @@ const EventCard = (props) => {
           title={titleCase(props.title)}
           subheader={props.date}
         />
+
         <CardMedia
           className={classes.media}
           image={props.imgUrl}
           title={props.title.toUpperCase()}
         />
-        {/*
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
-        </Typography>
-      </CardContent>*/}
+
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />

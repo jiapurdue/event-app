@@ -43,9 +43,6 @@ const Event = () => {
   const [isEventLoaded, setIsEventLoaded] = useState(false);
   const [eventItems, setEventItems] = useState([]);
 
-  //   const [errorImage, setErrorImage] = useState(null);
-  //   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  //   const [imageItems, setImageItems] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -113,6 +110,7 @@ const Event = () => {
                   <EventCard
                     key={index}
                     title={truncateStr(item.title, 35)}
+                    fullTitle={item.title}
                     imgUrl={item.url}
                     date={getRadomDate()}
                     id={item.id}
