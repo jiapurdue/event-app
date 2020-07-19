@@ -10,12 +10,14 @@ import ThemeProvider from "@material-ui/styles/ThemeProvider";
 
 import Home from "./pages/Home";
 import Event from "./pages/Event";
+import Navbar from "./components/Navbar";
 
 const history = createBrowserHistory();
 
 const App = () => (
   <ThemeProvider theme={theme}>
     <Router history={history}>
+      <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/event" component={Event} />
