@@ -41,7 +41,7 @@ const EventCard = (props) => {
           </Avatar>
         }
         title={titleCase(props.title)}
-        subheader="September 14, 2016"
+        subheader={props.date}
       />
       <CardMedia
         className={classes.media}

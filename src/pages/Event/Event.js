@@ -10,6 +10,16 @@ import Paper from "@material-ui/core/Paper";
 import EventCard from "../../components/EventCard";
 import styles from "../../assets/jss/pages/eventStyle";
 
+import * as moment from "moment";
+import * as DateGenerator from "random-date-generator";
+
+const getRadomDate = () => {
+  let startDate = new Date();
+  let endDate = new Date(2020, 12, 12);
+  return moment(DateGenerator.getRandomDateInRange(startDate, endDate)).format(
+    "ll"
+  );
+};
 const useStyles = makeStyles(styles);
 
 const Event = () => {
@@ -30,6 +40,7 @@ const Event = () => {
         (result) => {
           setIsEventLoaded(true);
           setEventItems(result);
+          console.log(result);
         },
         (error) => {
           setIsEventLoaded(true);
@@ -82,8 +93,15 @@ const Event = () => {
 
             <Grid container className={classes.eventCardContainer}>
               <ul>
-                {eventItems.map((item, index) => 
-                  index < 10 ? <EventCard key={index} title={item.title} imgUrl={item.url}/> : null
+                {eventItems.map((item, index) =>
+                  index < 10 ? (
+                    <EventCard
+                      key={index}
+                      title={item.title}
+                      imgUrl={item.url}
+                      date={getRadomDate()}
+                    />
+                  ) : null
                 )}
               </ul>
             </Grid>
